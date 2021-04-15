@@ -1,0 +1,24 @@
+version: '2.1'
+
+services:
+  node-express-mongo:
+    image: node-express-mongo
+    build: .
+    environment:
+      NODE_ENV: production
+    ports:
+      -  5000:5000
+    links:
+      - mongodb   
+    volumes:
+      - .:/usr/src/server  
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017  
+    volumes:
+      - data:/data/db
+
+
+volumes:
+  data:      
